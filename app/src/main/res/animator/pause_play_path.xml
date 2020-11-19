@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@android:integer/config_shortAnimTime"
+    android:propertyName="pathData"
+    android:valueType="pathType"
+    android:valueFrom="@string/path_pause"
+    android:valueTo="@string/path_play"
+    >
+
+</objectAnimator>

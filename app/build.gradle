@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.qinbin.mdmusic"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+//        exclude 'META-INF/androidx.vectordrawable_vectordrawable.version'
+//        exclude 'META-INF/androidx.loader_loader.version'
+//        exclude("META-INF/androidx.lifecycle_lifecycle-livedata.version")
+//        exclude("kotlin/annotation/annotation.kotlin_builtins")
+//        exclude("META-INF/androidx.lifecycle_lifecycle-runtime.version")
+//        exclude("META-INF/androidx.arch.core_core-runtime.version")
+//        exclude("META-INF/androidx.versionedparcelable_versionedparcelable.version")
+//        exclude("META-INF/androidx.vectordrawable_vectordrawable-animated.version")
+//        exclude("META-INF/androidx.savedstate_savedstate.version")
+//        exclude("META-INF/androidx.interpolator_interpolator.version")
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
+}

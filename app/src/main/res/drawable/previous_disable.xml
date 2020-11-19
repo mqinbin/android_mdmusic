@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap
+    android:src="@drawable/previous_enable" android:tintMode="src_in" android:tint="@android:color/darker_gray"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

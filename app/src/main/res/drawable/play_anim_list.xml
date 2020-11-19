@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="500">
+        <!--把资源中白色的图片染成灰色的-->
+        <bitmap
+            android:src="@drawable/equalizer1"
+            android:tint="@android:color/holo_red_dark"
+            android:tintMode="src_atop" />
+    </item>
+    <item android:duration="500">
+        <!--把资源中白色的图片染成灰色的-->
+        <bitmap
+            android:src="@drawable/equalizer2"
+            android:tint="@android:color/holo_red_dark"
+            android:tintMode="src_atop" />
+    </item>
+    <item android:duration="500">
+        <!--把资源中白色的图片染成灰色的-->
+        <bitmap
+            android:src="@drawable/equalizer3"
+            android:tint="@android:color/holo_red_dark"
+            android:tintMode="src_atop" />
+    </item>
+</animation-list>
