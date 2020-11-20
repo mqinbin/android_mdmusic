@@ -2,6 +2,7 @@ package com.qinbin.mdmusic.ui.activity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
@@ -15,6 +16,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +39,8 @@ public class MainActivity extends BaseActivity implements MediaControllerConsume
     private ImageView coverIv;
     private CheckBox playPauseCB;
     private NavigationView nv;
-
+    ActionBarDrawerToggle toggle;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +48,13 @@ public class MainActivity extends BaseActivity implements MediaControllerConsume
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         RecyclerView rv = (RecyclerView) findViewById(R.id.mainRv);
         nv = (NavigationView) findViewById(R.id.mainNv);
         titleTv = (TextView) findViewById(R.id.mainTitleTv);
         artistTv = (TextView) findViewById(R.id.mainArtistTv);
         coverIv = (ImageView) findViewById(R.id.mainLittleCover);
+        drawer = (DrawerLayout) findViewById(R.id.main_drawer);
 
         playPauseCB = (CheckBox) findViewById(R.id.mainPlayPauseCb);
         playPauseCB.setOnClickListener(playPauseOcl);
@@ -60,11 +66,43 @@ public class MainActivity extends BaseActivity implements MediaControllerConsume
         addMediaControllerConsumer(this);
         addMediaControllerConsumer(adapter);
 
+
         nv.setNavigationItemSelectedListener(nvListener);
 
+
+        toggle = new ActionBarDrawerToggle(this, drawer, 0, 0);
+        drawer.addDrawerListener(toggle);
         coverIv.setOnClickListener(this);
+
+
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        toggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        toggle.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        toggle.syncState();
+        // 让toggle显示出来
+        getActionBar();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        drawer.removeDrawerListener(toggle);
+    }
 
     @Override
     public void onObtainMediaController(MediaController mediaController) {
@@ -181,7 +219,7 @@ public class MainActivity extends BaseActivity implements MediaControllerConsume
                 transportControls.sendCustomAction("PlayMode", bundle);
 
             }
-            //                   item.setChecked(true);
+//           item.setChecked(true);
             return true;
         }
     };
